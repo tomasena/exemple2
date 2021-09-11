@@ -17,15 +17,15 @@ Route::get('/', function () {
 });
 
 Route::get('/product', function () {
-    return "Liste des produits";
+    return view('product-list');
 });
 
 Route::get('/product/{id}', function ($id) {
-    return view('product')->with('numero', $id);
+    return view('product-detail')->with('numero', $id);
 }) ->where('id', '[0-9]+');
 
 Route::get('/cart', function () {
-    return "Panier courses";
+    return view('cart');
 });
 
 

@@ -1,9 +1,9 @@
 @extends('template')
  
 @section('titre')
-    Les produits
+    Liste des produits
 @endsection
  
 @section('contenu')
-    <p>C'est le produit n° {{ $numero }}</p>
+    <p>Voici la liste des produits</p>
 @endsection
