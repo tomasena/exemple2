@@ -21,8 +21,8 @@ Route::get('/product', function () {
 });
 
 Route::get('/product/{id}', function ($id) {
-    return "Fiche du produit " . $id;
-});
+    return view('product')->with('numero', $id);
+}) ->where('id', '[0-9]+');
 
 Route::get('/cart', function () {
     return "Panier courses";
