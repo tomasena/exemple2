@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController; // ajouté. Lavarvel 8 ne troube pas le controleur
 
 /*
 |--------------------------------------------------------------------------
@@ -12,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');  // avec use
+// Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/product', function () {
     return view('product-list');
