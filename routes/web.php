@@ -1,6 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WelcomeController; // ajouté. Lavarvel 8 ne troube pas le controleur
+
+// necessaires pour laravel 8
+use App\Http\Controllers\WelcomeController; 
+use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\CartController; 
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +20,25 @@ use App\Http\Controllers\WelcomeController; // ajouté. Lavarvel 8 ne troube pas
 |
 */
 
-Route::get('/', 'App\Http\Controllers\WelcomeController@index');
+//Route::get('/', 'App\Http\Controllers\WelcomeController@index');
 //Route::get('/', 'WelcomeController@index');  // avec use
-// Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('home'); // route nommé
 
-Route::get('/product', function () {
-    return view('product-list');
-});
+Route::get('photo', [PhotoController::class, 'create']);
+Route::post('photo', [PhotoController::class, 'store']);
 
-Route::get('/product/{id}', function ($id) {
-    return view('product-detail')->with('numero', $id);
-}) ->where('id', '[0-9]+');
+Route::get('contact',  [ContactController::class, 'create']);   // non : 'ContactController@create'
+Route::post('contact', [ContactController::class, 'store']); 
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('users', [UsersController::class, 'create']);
+Route::post('users', [UsersController::class, 'store']);
+
+Route::get('product', [ProductController::class, 'list']);
+// le paramètre est passé.  
+Route::get('product/{id}', [ProductController::class,'show']) ->where('id', '[0-9]+');
+
+Route::get('cart', [CartController::class, 'show']);
+
 
 
  
